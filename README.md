@@ -1,1 +1,1 @@
-# pbs-basics-of-programing-studies
+# Podstawy programowania
