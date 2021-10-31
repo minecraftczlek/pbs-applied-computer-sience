@@ -6,3 +6,5 @@
 <br>
 ### Wykłady:
 <a href="sedziowie">Sędziowie</a><br>
+
+<img src="https://www.lifeandmore.pl/files/Image/smakiswiata/pizza_hawajska.jpg">
