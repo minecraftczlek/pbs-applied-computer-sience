@@ -9,7 +9,7 @@ int main(){
 
     netto = brutto;
 
-    printf("Wynagrodzenie brutto: %fzl,\n");
+    printf("Wynagrodzenie brutto: %1.2fzl,\n", brutto);
 
     if(brutto<=1200){
         netto -= brutto*0.15;
@@ -29,7 +29,7 @@ int main(){
         }
     }
 
-    printf("kwota netto wynosi: %dzl\n",netto);
+    printf("kwota netto wynosi: %1.2fzl\n",netto);
 
     return 0;
 }
