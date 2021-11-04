@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <ctype.h>
-#include <stdbool.h>
 
 int main(){
     int words = 0, chars = 0;
