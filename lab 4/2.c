@@ -3,7 +3,7 @@
 
 int main(){
     float hours = 40, brutto = 0, netto;
-    scanf("%d", &hours);
+    scanf("%f", &hours);
 
     brutto += (rate*40) + ((hours-40)*rate*1.5);
 
