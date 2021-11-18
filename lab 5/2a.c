@@ -1,16 +1,13 @@
 #include <stdio.h>
-#define unsigned long long int xint
+#define xint unsigned long long int
 // definiuje słowo kluczowe xint
 
-int silnia(int n){
-    if(n == 1) return 1;
-    // jeśli n==1 to po prostu zwracam 1
-    return silnia(n-1) * n;
-    // wywołuje rekurencyjnie funkcje i mnoże wynik * n
-}
-
 int main(){  
-    printf("%d", silnia(7)); 
-    // wywołujemu funkcję silnia i wypisujemy jej wynik  
+    xint result=1, n=7;
+    // wynik na początku jest równy 1
+    for(int i=2; i<=n; i++) result *= i;
+    // zaczynam pętle od 2 do n i mnoże z każdą iteracją wynik przez i
+    printf("%d", result);
+    
     return 0;
 }
