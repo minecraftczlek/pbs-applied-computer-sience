@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int get(){
+unsigned int get(){
     printf("Podaj liczbe calkowita dziesietna dodadnia: ");
     unsigned int x;
     scanf("%d", &x);
@@ -13,7 +13,7 @@ void decToBin(unsigned int x){
     // tab przechowuje bity w odwrotnej kolejności, i iterator to pętli
 
     for(i=0; x>0; i++){
-        // pętle wykonujemy do czasu aż x będzie większe od 0
+        // pętle wykonujemy tak długo jak x będzie większe od 0
         tab[i] = x%2;
         // do tablicy wpisujemy odpowiedni bit 0 lub 1
         x /= 2;
