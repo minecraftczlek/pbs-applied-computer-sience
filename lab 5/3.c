@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <math.h>
-// math przyda się do obliczania potęg
 
 int get(){
     printf("Podaj liczbe calkowita dziesietna dodadnia: ");
@@ -10,40 +8,21 @@ int get(){
     return x;
 }
 
-void convert(int x){
-    if(x==0){
-        printf("0");
-        return;
-    }
-    else if(x==1){
-        printf("1");
-        return;
-    }
-    // dla 0 i 1 usztawiam warotści na sztywno
-    int max=0, q=0; //max-maksymalny wykładnik, q-aktualnie sprawdzany wykładnik
-    while(!max){
-        int w = pow(2, q);
-        if((x / w) >= 2) q++;
-        else{
-            max = q;
-            x -= w;    
-            printf("1");
-            // wypisuję pierwszy bit
-        }
-    }
-    // obliczam maksymalną potęge
+void decToBin(unsigned int x){
+    short int tab[32], i;
+    // tab przechowuje bity w odwrotnej kolejności, i iterator to pętli
 
-    for(int i=max-1; i>=0; i--){
-        int w = pow(2, i);
-        if(x > w){
-            x -= w;
-            printf("1");
-        }else printf("0");
+    for(i=0; x>0; i++){
+        // pętle wykonujemy do czasu aż x będzie większe od 0
+        tab[i] = x%2;
+        // do tablicy wpisujemy odpowiedni bit 0 lub 1
+        x /= 2;
     }
-    // obliczam pozostałe bity jeśli jakiś jest równy zero to odejmuje jego wartość od x
+    for(i-=1; i>=0; i--) printf("%d", tab[i]);
+    // wypisujemy tablicę w odwrotnej kolejności
 }
 
 int main(){
-    convert(get());
+    decToBin(get());
     return 0;
 }
