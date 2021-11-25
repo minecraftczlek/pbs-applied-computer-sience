@@ -1,5 +1,6 @@
 #include <stdio.h>
-#define xint unsigned long long int
+
+typedef unsigned long long int xint;
 // definiuje słowo kluczowe xint
 
 xint silnia(xint n){
