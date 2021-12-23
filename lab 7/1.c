@@ -4,7 +4,7 @@
 void skracaj(unsigned char *pointer, int size);
 
 int main(){
-    unsigned char string[99], c;
+    unsigned char string[99];
     int size;
 
     puts("wprowadz lancuch znakowy: ");
