@@ -10,10 +10,10 @@ int main(){
     puts("wprowadz lancuch znakowy: ");
     fgets(string, 99, stdin);
 
-    for(int i=0; i<strlen(string); i++){
+    for(int i=0; i<(strlen(string)-1); i++){
+        fflush(stdin); // czyszczenie buforu
         printf("Podaj znak do sprawdzenia: ");
         c = getchar();
-        if(c == '\n') c = getchar();
         if(znajduje_sie_w(c, string)) printf("znak \"%c\" znajduje się w lancuchu\n", c);
         else printf("znak \"%c\" nie znajduje się w lancuchu\n", c);
     }
