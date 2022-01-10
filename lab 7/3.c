@@ -10,6 +10,7 @@ int main(){
     fgets(A, 100, stdin);
     puts("wprowadz lancuch znakowy B: ");
     fgets(B, 100, stdin);
+    // pobieram łańcuchy
     
     sklej(A,B);
 

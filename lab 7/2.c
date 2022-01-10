@@ -9,13 +9,16 @@ int main(){
 
     puts("wprowadz lancuch znakowy: ");
     fgets(string, 99, stdin);
+    // pobieranie łańcucha
 
     for(int i=0; i<(strlen(string)-1); i++){
         fflush(stdin); // czyszczenie buforu
         printf("Podaj znak do sprawdzenia: ");
         c = getchar();
+        // pobieranie znaku do sprawdzenia
         if(znajduje_sie_w(c, string)) printf("znak \"%c\" znajduje się w lancuchu\n", c);
         else printf("znak \"%c\" nie znajduje się w lancuchu\n", c);
+        // sprawdzanie czy dany znak znajduje się w łańcuchu
     }
     
     return 0;
