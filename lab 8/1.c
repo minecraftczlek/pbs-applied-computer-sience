@@ -24,12 +24,11 @@ int main(){
     }
 
     for(int i=0; i<ilosc; i++){
-        printf("\nDarczynca nr %d: \n", i);
-        printf("imie: ");
-        puts(darczyncy[i].imie);
-        printf("Grupa: ");
-        puts(darczyncy[i].grupa);
-        printf("kwota: %1.2f zl\n", darczyncy[i].kwota);
+        printf("Imie: ");
+        fputs(darczyncy[i].imie, stdout);
+        printf(", Grupa: ");
+        fputs(darczyncy[i].grupa, stdout);
+        printf("; kwota: %1.2f zl;\n", darczyncy[i].kwota);
     }
 
     return 0;
