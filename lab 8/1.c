@@ -29,7 +29,7 @@ int main(){
         puts(darczyncy[i].imie);
         printf("Grupa: ");
         puts(darczyncy[i].grupa);
-        printf("kwota: %f1.2 zl\n", darczyncy[i].kwota);
+        printf("kwota: %1.2f zl\n", darczyncy[i].kwota);
     }
 
     return 0;
