@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 struct zbiorka{
     char imie[10];
@@ -20,6 +21,15 @@ int main(){
         scanf("%s", &darczyncy[i].grupa[0]);
         printf("Podaj kwote: ");
         scanf("%f", &darczyncy[i].kwota);
+    }
+
+    for(int i=0; i<ilosc; i++){
+        printf("\nDarczynca nr %d: \n", i);
+        printf("imie: ");
+        puts(darczyncy[i].imie);
+        printf("Grupa: ");
+        puts(darczyncy[i].grupa);
+        printf("kwota: %f1.2 zl\n", darczyncy[i].kwota);
     }
 
     return 0;
