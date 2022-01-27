@@ -29,9 +29,12 @@ int main(void)
 int * tablica_wykonaj (int elem, int wart){
     int *wsk;
     wsk = (int*)malloc(elem*sizeof(int));
+    // przdzielanie pamięci
     for(int i=0; i<elem; i++)wsk[i] = wart;
+    // zapełnianie tablicy wartością
     return wsk;
 }
 void wyswietl_tab(const int tab[], int n){
     for(int i=0; i<n; i++) printf("%d ",tab[i]);
+    // wyświetlanie tablicy
 }
