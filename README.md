@@ -8,7 +8,8 @@
 <a href="lab 6">lab 6</a>,
 <a href="lab 7">lab 7</a>,
 <a href="lab 8">lab 8</a>,
-<a href="lab 9">lab 9</a>
+<a href="lab 9">lab 9</a>,
+<a href="lab 10">lab 10</a>
 <br>
 ### Wykłady:
 <a href="sedziowie">Sędziowie</a><br>
