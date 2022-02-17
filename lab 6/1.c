@@ -8,4 +8,5 @@ int main(){
     for(int i=4; i>=0; i--) printf("%d ", table[i]);
     // wypisywanie tablicy w odwrotnej kolejności
     return 0;
+    // zmiana
 }
