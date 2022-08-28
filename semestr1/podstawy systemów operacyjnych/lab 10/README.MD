@@ -1,0 +1,1 @@
+### Skrypt do wygenerowania  galerii  HTML zaciągający obrazy  z  danego folderu
