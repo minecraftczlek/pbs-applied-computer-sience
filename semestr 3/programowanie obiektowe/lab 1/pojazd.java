@@ -23,4 +23,11 @@ public class Pojazd {
     public void setModel(String model) {
         this.model = model;
     }
+
+    public boolean isZgodnaKategoria(Pojazd innyPojazd){
+        return innyPojazd != null
+                && this.liczbaKol == innyPojazd.liczbaKol
+                && this.dwuslad == innyPojazd.dwuslad
+                && this.typSilnika.equals(innyPojazd.typSilnika);
+    }
 }
