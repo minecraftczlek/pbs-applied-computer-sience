@@ -7,4 +7,12 @@ public class Segway extends Pojazd {
         super(model, typSilnika, liczbaKol, dwuslad);
         this.generacja = generacja;
     }
+
+    public int getGeneracja() {
+        return generacja;
+    }
+
+    public void setGeneracja(int generacja) {
+        this.generacja = generacja;
+    }
 }
