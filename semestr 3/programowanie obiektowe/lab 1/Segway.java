@@ -1,4 +1,4 @@
-package lab;
+package lab.Intro;
 
 public class Segway extends Pojazd {
     private int generacja;
