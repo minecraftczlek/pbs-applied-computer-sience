@@ -15,4 +15,12 @@ public class Segway extends Pojazd {
     public void setGeneracja(int generacja) {
         this.generacja = generacja;
     }
+
+    @Override
+    public boolean isZgodnaKategoria(Pojazd innyPojazd) {
+        if(!super.isZgodnaKategoria(innyPojazd)) return false;
+
+        //TODO tutaj będą dwa sequey'ie i będziemy to robićna następnych zajęciach
+        return false;
+    }
 }
