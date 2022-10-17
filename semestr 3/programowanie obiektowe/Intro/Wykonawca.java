@@ -2,6 +2,6 @@ package lab.Intro;
 
 public class Wykonawca {
     public void wykonajZadanie(){
-        System.out.println(("wykonano zadanie\n"));
+        System.out.println(("WYKONAWCA: wykonano zadanie\n"));
     }
 }
