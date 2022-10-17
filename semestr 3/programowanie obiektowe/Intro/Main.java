@@ -2,11 +2,19 @@ package lab.Intro;
 
 public class Main {
     public static void main(String[] args){
-//        System.out.println("żegnaj świecie!");
-//
-//        double[] tab = new double[] {3.5, 5.5, 13, 3, 6.6};
-//        System.out.println("Wynik: " + srednia(tab));
+//        test();
 
+        testDziedziczenia();
+    }
+
+    private static void test() {
+        System.out.println("żegnaj świecie!");
+
+        double[] tab = new double[] {3.5, 5.5, 13, 3, 6.6};
+        System.out.println("Wynik: " + srednia(tab));
+    }
+
+    private static void testDziedziczenia() {
         Pojazd samBMW = new Pojazd("BMW", TypSilnikaEnum.SPALINOWY, 4, true);
         Segway segwayI = new Segway("SegwayI", TypSilnikaEnum.ELEKTRYCZNY, 2, true, 1);
 
