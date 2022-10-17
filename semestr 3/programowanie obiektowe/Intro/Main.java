@@ -5,7 +5,7 @@ public class Main {
 //        test();
 //        testDziedziczenia();
 //        testKiepskaDelegacja();
-//        testDobraDelegacja();
+        testDobraDelegacja();
     }
 
     private static void testDobraDelegacja() {
@@ -16,13 +16,30 @@ public class Main {
         Kurier kurier = new Kurier();
         kierownik = new DobryKierownik(kurier);
         kierownik.wykonajZadanie();
+
+        IWykonawca informatyk = new IWykonawca() {
+            @Override
+            public void wykonajZadanie() {
+                System.out.println(("INFORMATYK (anonimowy): wykonano zadanie\n"));
+            }
+        };
+        kierownik = new DobryKierownik(informatyk);
+        kierownik.wykonajZadanie();
+
+        IWykonawca programista = () -> {
+            System.out.println("PROGRAMISTA (lambda): wykonano zadanie\n");
+        };
+        kierownik = new DobryKierownik(programista);
+        kierownik.wykonajZadanie();
     }
 
     private static void testKiepskaDelegacja() {
         Wykonawca sekretarka = new Wykonawca();
         KiepskiKierownik kierownik = new KiepskiKierownik(sekretarka);
         kierownik.wykonajZadanie();
+
     }
+
 
     private static void testDziedziczenia() {
         Pojazd samBMW = new Pojazd("BMW", TypSilnikaEnum.SPALINOWY, 4, true);
