@@ -4,16 +4,24 @@ public class Main {
     public static void main(String[] args){
 //        test();
 //        testDziedziczenia();
-        Wykonawca sekretarka = new Wykonawca();
-        KiepskiKierownik kierownik = new KiepskiKierownik(sekretarka);
+//        testKiepskaDelegacja();
+//        testDobraDelegacja();
+    }
+
+    private static void testDobraDelegacja() {
+        IWykonawca sekretarka = new Sekretarka();
+        DobryKierownik kierownik = new DobryKierownik(sekretarka);
+        kierownik.wykonajZadanie();
+
+        Kurier kurier = new Kurier();
+        kierownik = new DobryKierownik(kurier);
         kierownik.wykonajZadanie();
     }
 
-    private static void test() {
-        System.out.println("żegnaj świecie!");
-
-        double[] tab = new double[] {3.5, 5.5, 13, 3, 6.6};
-        System.out.println("Wynik: " + srednia(tab));
+    private static void testKiepskaDelegacja() {
+        Wykonawca sekretarka = new Wykonawca();
+        KiepskiKierownik kierownik = new KiepskiKierownik(sekretarka);
+        kierownik.wykonajZadanie();
     }
 
     private static void testDziedziczenia() {
@@ -30,6 +38,13 @@ public class Main {
         Segway segwayIIDeluxe = new Segway("segwayIIDeluxe", TypSilnikaEnum.ELEKTRYCZNY, 2, true, 2);
         zgodna = segwayII.isZgodnaKategoria(segwayIIDeluxe);
         System.out.printf("SegwayII -> SegwayIIDeluxe: %b %n", zgodna);
+    }
+
+    private static void test() {
+        System.out.println("żegnaj świecie!");
+
+        double[] tab = new double[] {3.5, 5.5, 13, 3, 6.6};
+        System.out.println("Wynik: " + srednia(tab));
     }
 
     public static double srednia(double[] tab){
