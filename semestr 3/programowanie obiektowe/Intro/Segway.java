@@ -20,7 +20,12 @@ public class Segway extends Pojazd {
     public boolean isZgodnaKategoria(Pojazd innyPojazd) {
         if(!super.isZgodnaKategoria(innyPojazd)) return false;
 
-        //TODO tutaj będą dwa sequey'ie i będziemy to robićna następnych zajęciach
+        //tutaj będą dwa sequey'ie
+        if(innyPojazd instanceof Segway){
+            Segway innySegway = (Segway) innyPojazd;
+            if(this.generacja == innySegway.getGeneracja()) return true;
+        }else System.out.println("Błąd wewnętrzny porównania kategori!");
+
         return false;
     }
 }
