@@ -3,8 +3,10 @@ package lab.Intro;
 public class Main {
     public static void main(String[] args){
 //        test();
-
-        testDziedziczenia();
+//        testDziedziczenia();
+        Wykonawca sekretarka = new Wykonawca();
+        KiepskiKierownik kierownik = new KiepskiKierownik(sekretarka);
+        kierownik.wykonajZadanie();
     }
 
     private static void test() {
