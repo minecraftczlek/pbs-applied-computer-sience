@@ -1,2 +1,2 @@
-import sys
-print(sys.version)
+from sys import version
+print(version)
