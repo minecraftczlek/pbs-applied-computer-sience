@@ -1,11 +1,29 @@
 package lab.Intro;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main {
     public static void main(String[] args){
 //        test();
 //        testDziedziczenia();
 //        testKiepskaDelegacja();
-        testDobraDelegacja();
+//        testDobraDelegacja();
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                String name = Thread.currentThread().getName();
+                System.out.printf("[%s] Wątek uruchomiony%n", name);
+                try {
+                    TimeUnit.SECONDS.sleep(7); //Thread.sleep(7000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.printf("[%s] Wątek zakończony%n", name);
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+        System.out.println("Wątek wystartowany");
     }
 
     private static void testDobraDelegacja() {
