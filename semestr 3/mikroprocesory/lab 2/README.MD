@@ -1,1 +1,1 @@
-Napisz program, który po uruchomieniu będzie mrugał diodą (LD2) z częstotliwością 2Hz. Klawisz (B1) powinien być oprogramowany w taki sposób aby jego wciśnięcie zmieniało częstotliwość mrugania diody pomiędzy 1,2 oraz 4Hz.
+Napisz program, który po uruchomieniu będzie mrugał diodą (LD2) z częstotliwością 2Hz. Klawisz (USER) powinien być oprogramowany w taki sposób aby jego wciśnięcie zmieniało częstotliwość mrugania diody pomiędzy 1,2 oraz 4Hz.
