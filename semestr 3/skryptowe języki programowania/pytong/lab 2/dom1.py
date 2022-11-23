@@ -6,9 +6,10 @@ class Triange:
         self.angle3 = angle3
     def check_angles(self):
         return self.angle1 + self.angle2 + self.angle3 == 180
+    def __eq__(self, o):
+        return self.angle1 == o.angle1 and self.angle2 == o.angle2 and self.angle2 == o.angle2
     
 my_triangle = Triange(50, 60, 70)
-my_triangle.__eq__ = "Trójkąt"
 
 print(my_triangle.number_of_sides)
 print(my_triangle.check_angles())

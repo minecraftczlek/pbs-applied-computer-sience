@@ -13,7 +13,7 @@ class Person(object):
         return self.age == o.age and self.name == o.name
     def __ne__(self, o):
         print ('wywołanie ne dla', self, 'i', o)
-        return self.age != o.age and self.name != o.name
+        return self.age != o.age or self.name != o.name
     def __lt__(self, o):
         print ('wywołanie lt dla', self, 'i', o)
         if self.name != o.name:
