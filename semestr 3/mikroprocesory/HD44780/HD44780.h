@@ -2,7 +2,7 @@
  * HD44780.c
  *
  *  Created on: 15 gru 2022
- *      Author: maciej Niedźwiecki
+ *      Author: maciej
  */
 #include "main.h"
 
