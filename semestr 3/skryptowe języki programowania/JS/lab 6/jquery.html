@@ -1,0 +1,38 @@
+<html>
+<head></head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        const pierwszy = $("p#pierwszy").html();
+        const drugi = $("p#drugi").html();
+        const color = $("p#pierwszy").css("background-color");
+        $("p#pierwszy").hover( 
+            e => $(e.target).html(drugi),
+            e => $(e.target).html(pierwszy)
+        );
+        $("p#drugi").hover( 
+            e => $(e.target).html(pierwszy),
+            e => $(e.target).html(drugi)
+        );
+        $("p#pierwszy").click( () => {
+            $("p#drugi").fadeToggle();
+            $("p#trzeci").slideToggle();
+            $("p#czwarty").toggle();
+        })
+        $("p").hover(
+            e => $(e.target).css("background-color", "blue"),
+            e => $(e.target).css("background-color", color)
+        )
+    });
+</script>
+<p id='pierwszy' class = "przyklad" style="float:left; width:100px; background-color:#CCC;
+margin:15px; padding:15px;"> Paragraf A </p>
+<p id='drugi' class = "przyklad" style="float:left; width:100px; background-color:#CCC;
+margin:15px; padding:15px;"> Paragraf B </p>
+<p id='trzeci' class = "przyklad" style="float:left; width:100px; background-color:#CCC;
+margin:15px; padding:15px;"> Paragraf C </p>
+<p id='czwarty' class = "przyklad" style="float:left; width:100px; background-color:#CCC;
+margin:15px; padding:15px;"> Paragraf D </p>
+</body>
+</html>
