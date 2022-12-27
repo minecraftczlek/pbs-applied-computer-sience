@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Inkrementator</title>
+<script>
+var zmienna = 0;
+function increaseCount(){
+    zmienna++;
+    document.querySelector("#currentCount").innerHTML = zmienna;
+}
+function reset(){
+    zmienna = 0;
+    document.querySelector("#currentCount").innerHTML = zmienna;
+}
+</script>
+</head>
+<body>
+<h1>Inkrementator</h1>
+<p>Licznik <span id="currentCount">0</span></p>
+<button id="incrementButton" >Inkrementuj</button>
+<button id="resetButton" >Reset</button>
+<script>
+    document.querySelector("#incrementButton").addEventListener("mouseover", increaseCount);
+    document.querySelector("#resetButton").addEventListener("click", reset);
+</script>
+</body>
+</html>

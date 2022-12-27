@@ -1,1 +1,0 @@
-# Perl śmierdzi

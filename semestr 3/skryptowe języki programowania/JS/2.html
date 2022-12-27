@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Kalkulator Dodawanie</title>
+<script>
+function sprawdz(){
+    let x = document.querySelector("#pierwsza").value * 1;
+    let y = document.querySelector("#druga").value * 1;
+    document.querySelector(".wynik").innerHTML = x+y;
+}
+function dodaj(x, y){
+    return x+y;
+}
+</script>
+</head>
+<body>
+<label for = "number1"></label><input type="text"
+id="pierwsza" value=""> +
+<input type="text"
+id="druga" value="">
+<button id="submit" onclick="sprawdz();">=</button>
+<h1 class="wynik"></h1>
+</body>
+</html>

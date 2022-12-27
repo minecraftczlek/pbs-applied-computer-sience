@@ -1,0 +1,8 @@
+{
+    "test":{
+        "laboratorium" : "Programowanie w językach skryptowych",
+        "prowadzacy" : "Marek Pawlicki",
+        "temat" : "JavaScript 2 - AJAX & JSON",
+        "rok" : "2018"
+    }
+}
