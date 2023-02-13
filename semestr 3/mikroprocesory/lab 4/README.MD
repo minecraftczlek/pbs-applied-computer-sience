@@ -5,5 +5,5 @@
 -TIM2 jako timer do delaya<br>
 -TIM3 jako timer do reszty zastosowań<br>
 -w obydwóch ustawić źródła zegarów (Clock Source) jako zegar węwnetrzny (Internal Clock)<br>
--ustawić prescalery (PSC) zgodnie z zegarem (u mnie 84 MHz ustawiłem 8399) tak aby timer zwiększał się z częstotliwością 10KHz<br>
+-ustawić prescalery (PSC) zgodnie z zegarem (u mnie przy 84 MHz zegara ustawiłem 8399) tak aby timer zwiększał się z częstotliwością 10KHz<br>
 -włączyć przerwania w obydwu timerach
