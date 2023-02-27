@@ -1,6 +1,6 @@
 # Podstawy programowania
 semestr zimowy 2021
-### Prowadzący: Marta Gackowska
+### Prowadzący: ***** *********
 ### labolatoria:
 <a href="lab 1">lab 1</a>,
 <a href="lab 2">lab 2</a>,
@@ -12,8 +12,8 @@ semestr zimowy 2021
 <a href="lab 8">lab 8</a>,
 <a href="lab 9">lab 9</a>,
 <a href="lab 10">lab 10</a>
-<br>
+
 ### Wykłady:
-<a href="sedziowie">Sędziowie</a><br>
+<a href="sedziowie">Sędziowie</a>
 
 <a href="https://github.com/Milesq"><img src="https://www.lifeandmore.pl/files/Image/smakiswiata/pizza_hawajska.jpg"></a>
