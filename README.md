@@ -10,3 +10,4 @@
 - <a href="semestr 3/skryptowe języki programowania">Skryptowe języki programowania</a>
 
 ### <a href="semestr 3">semestr 4</a>
+- <a href="semestr 4/zaawansowane programowanie obiektowe">zaawansowane programowanie obiektowe</a>
