@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -63,6 +66,7 @@ public class MainFrame {
             }
         });
     }
+
     public MainFrame() {
         liczbaWyrazowStatystyki = 10;
         fajrant = new AtomicBoolean(false);
@@ -72,6 +76,7 @@ public class MainFrame {
         producentFuture = new ArrayList<>();
         initialize();
     }
+
     /**
      * Initialize the contents of the frame.
      */
@@ -114,6 +119,7 @@ public class MainFrame {
         panel.add(btnStop);
         panel.add(btnZamknij);
     }
+
     /**
      * Statystyka wyrazów (wzorzec PRODUCENT - KONSUMENT korzystający z kolejki blokującej)
      */
@@ -134,13 +140,38 @@ public class MainFrame {
             System.out.println(info);
 
             while (!Thread.currentThread().isInterrupted()) {
-                if(fajrant.get()) {
-                    // TODO przekazanie poison pills (kolejka.put(Optional.empty());) konsumentom i zakończenia działania
+                if (fajrant.get()) {
+                    for (int i = 0; i < liczbaKonsumentow; i++) {
+                        try {
+                            kolejka.put(Optional.empty());
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    info = String.format("PRODUCENT %s SKOŃCZYŁ PRACĘ", name);
+                    System.out.println(info);
+                    return;
                 } else {
-
-                    // TODO Wyszukiwanie plików *.txt i wstawianie do kolejki ścieżki opakowanej w Optional (Optional<Path>
-                    // optPath = Optional.ofNullable(path); kolejka.put(optPath);) lub oczekiwanie jeśli kolejka
-                    // pełna. Do wyszukiwania plików można użyć metody Files.walkFileTree oraz klasy SimpleFileVisitor<Path>
+                    Path dir = Paths.get(DIR_PATH);
+                    String[] list = dir.toFile().list(); //pobieranie listy plików
+                    List<String> txtFile = new ArrayList<>();
+                    for (int i = 0; i < list.length; i++) { //szukanie plików txt
+                        //System.out.printf("plik %d: %s%n",i,list[i]);
+                        if (list[i].matches(".+\\.(?i)(txt)$"))
+                            txtFile.add(list[i]);
+                    }
+                    Optional<Path> optPath;
+                    for (int i = 0; i < txtFile.size(); i++) {
+                        //System.out.printf("plik %d: %s%n",i,txtFile.get(i));
+                        optPath = Optional.ofNullable(Paths.get(DIR_PATH + "\\" + txtFile.get(i)));
+                        try {
+                            kolejka.put(optPath);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    info = String.format("PRODUCENT %s SKOŃCZYŁ PRACĘ", name);
+                    System.out.println(info);
                 }
                 info = String.format("Producent %s ponownie sprawdzi katalogi za %d sekund", name, przerwa);
                 System.out.println(info);
@@ -149,11 +180,9 @@ public class MainFrame {
                 } catch (InterruptedException e) {
                     info = String.format("Przerwa producenta %s przerwana!", name);
                     System.out.println(info);
-                    if(!fajrant.get()) Thread.currentThread().interrupt();
+                    if (!fajrant.get()) Thread.currentThread().interrupt();
                 }
             }
-            info = String.format("PRODUCENT %s SKOŃCZYŁ PRACĘ", name);
-            System.out.println(info);
         };
         Runnable konsument = () -> {
             final String name = Thread.currentThread().getName();
@@ -161,17 +190,31 @@ public class MainFrame {
             System.out.println(info);
 
             while (!Thread.currentThread().isInterrupted()) {
-                /*try {
-// TODO pobieranie ścieżki (Optional<Path> optPath = kolejka.take();) i tworzenie statystyki wyrazów
-// lub oczekiwanie jeśli kolejka jest pusta. Brak ścieżki tj. !optPath.isPresent() oznacza koniec pracy
+                Optional<Path> optPath = null;
+                try {
+                    optPath = kolejka.take();
                 } catch (InterruptedException e) {
                     info = String.format("Oczekiwanie konsumenta %s na nowy element z kolejki przerwane!", name);
                     System.out.println(info);
                     Thread.currentThread().interrupt();
-                }*/
+                }
+                if (optPath.isEmpty()) {
+                    info = String.format("KONSUMENT %s ZAKOŃCZYŁ PRACĘ", name);
+                    System.out.println(info);
+                    return;
+                }
+                if (optPath.isPresent()) {
+                    //System.out.printf("konsument %s, plik: %s%n", name, optPath.get().toString());
+                    try {
+                        Map<String, Long> result = Statistics.countWords(optPath.get(), liczbaWyrazowStatystyki);
+                        System.out.println(result.toString());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
-            info = String.format("KONSUMENT %s ZAKOŃCZYŁ PRACĘ", name);
             System.out.println(info);
+            Thread.currentThread().interrupt();
         };
         //uruchamianie wszystkich wątków-producentów
         for (int i = 0; i < liczbaProducentow; i++) {
@@ -183,37 +226,4 @@ public class MainFrame {
             executor.execute(konsument);
         }
     }
-
-    /** Metoda zwraca najczęściej występujące słowa (ich liczbę określa wordsLimit, a słowa są sortowane względem
-     * częstotliwości ich występowania) we wskazanym pliku tekstowym
-     */
-    /*private Map<String, Long> getLinkedCountedWords(Path path, int wordsLimit) {
-        //konstrukcja 'try-with-resources' - z automatycznym zamykaniem strumienia/źródła danych
-        try (BufferedReader reader = Files.newBufferedReader(path)) {// wersja ze wskazaniem kodowania
-            // Files.newBufferedReader(path, StandardCharsets.UTF_8)
-            return reader.lines() // można też bez buforowania - Files.readAllLines(path)
-                    //TODO
-                    // 1. podział linii na słowa, można skorzystać z funkcji map, metody split i wyrażenia regularnego np. "\\s+"
-                    // oznaczającego jeden lub więcej tzw. białych znaków. Po tej operacji pewnie będzie potrzebna konwersja
-                    // strumienia 'String[]' do strumienia 'String' za pomocą .flatMap(Arrays::stream)
-                    // 2. wycięcie wszystkich znaków, które nie tworzą słów m.in. ;,.?!:
-                    // Można użyć np. .map(word -> word.replaceAll("[^a-zA-Z0-9ąęóśćżńźĄĘÓŚĆŻŃŹ]{1}", ""))
-                    // 3. filtrowanie słów - tylko z przynajmniej trzema znakami, użyj funkcji filter, metody matches i wyrażenia
-                    // regularnego w lambdzie np. word -> word.matches("[a-zA-Z0-9ąęóśćżńźĄĘÓŚĆŻŃŹ]{3,}")
-                    // (bez uwzględniania polskich znaków byłoby "[a-zA-Z]{3,}")
-                    // 4. konwersja do małych liter, aby porównywanie słów było niewrażliwe na wielkość liter (można zrobić wcześniej,
-                    // przed p. 2, wtedy wyrażenia regularne nie będą musiały uwzględniać wielkich literek)
-                    // 5. grupowanie słów względem liczebności ich występowania, można użyć
-                    // funkcji collect z Collectors.groupingBy(Function.identity(), Collectors.counting()),
-                    // po tej operacji należy zrobić konwersję na strumień tj. .entrySet().stream()
-                    // 6. sortowanie względem przechowywanych w mapie wartości, w kolejności malejącej,
-                    // można użyć Map.Entry.comparingByValue(Comparator.reverseOrder())
-                    // 7. ograniczenie liczby słów do wartości z wordsLimit
-                    .collect(Collectors.toMap( //umieszczenie elementów strumienia w mapie zachowującej kolejność tj. LinkedHashMap
-                            Map.Entry::getKey,
-                            Map.Entry::getValue,
-                            (k,v) -> { throw new IllegalStateException(String.format("Błąd! Duplikat klucza %s.", k)); },
-                            LinkedHashMap::new));
-        }catch (IOException e) {throw new RuntimeException(e);}
-    }*/
 }
