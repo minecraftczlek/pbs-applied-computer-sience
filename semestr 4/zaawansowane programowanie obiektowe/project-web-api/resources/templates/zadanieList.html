@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>lista zadań</title>
+</head>
+<body >
+<div class="root">
+  <h1>LIST ZADAŃ</h1>
+  <a href="projektList">LISTA PROJEKTÓW</a>
+  <a href="studentList">LISTA STUDENTÓW</a>
+  <b>LISTA ZADAŃ</b>
+  <br>
+  <a href="zadanieEdit">nowe zadanie</a>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>NAZWA</th>
+      <th>KOLEJNOSC</th>
+      <th>OPIS</th>
+      <th>DATA DODANIA</th>
+      <th>opcje</th>
+    </tr>
+    <tr th:each="zadanie : ${zadania}">
+      <td th:text="${zadanie.zadanieId}"></td>
+      <td th:text="${zadanie.nazwa}"></td>
+      <td th:text="${zadanie.kolejnosc}"></td>
+      <td th:text="${zadanie.opis}"></td>
+      <td th:text="${zadanie.dataCzasDodania}"></td>
+      <td>
+        <a th:href="@{zadanieEdit(zadanieId=${zadanie.zadanieId})}">edytuj</a>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

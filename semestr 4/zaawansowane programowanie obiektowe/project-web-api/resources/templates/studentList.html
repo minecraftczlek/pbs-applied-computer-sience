@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>lista studentów</title>
+</head>
+<body >
+<div class="root">
+  <h1>LIST STUDENTÓW</h1>
+  <a href="projektList">LISTA PROJEKTÓW</a>
+  <b>LISTA STUDENTÓW</b>
+  <a href="zadanieList">LISTA ZADAŃ</a>
+  <br>
+  <a href="studentEdit">nowy student</a>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>IMIE</th>
+      <th>NAZWISKO</th>
+      <th>NR INDEKSU</th>
+      <th>EMAIL</th>
+      <th>STACJONARNY</th>
+      <th>opcje</th>
+    </tr>
+    <tr th:each="student : ${studenci}">
+      <td th:text="${student.studentId}"></td>
+      <td th:text="${student.imie}"></td>
+      <td th:text="${student.nazwisko}"></td>
+      <td th:text="${student.nrIndeksu}"></td>
+      <td th:text="${student.email}"></td>
+      <td th:text="${student.stacjonarny}"></td>
+      <td>
+        <a th:href="@{studentEdit(studentId=${student.studentId})}">edytuj</a>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
