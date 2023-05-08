@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +28,7 @@ public class Projekt {
     @Column(name = "dataczas_utworzenia", nullable = false, updatable = false)
     private LocalDateTime dataCzasUtworzenia;
     @Column(name="data_oddania")
-    private LocalDateTime dataOddania;
+    private LocalDate dataOddania;
 
     @OneToMany(mappedBy = "projekt")
     @JsonIgnoreProperties({"projekt"})
@@ -48,6 +50,14 @@ public class Projekt {
     public Projekt(String nazwa, String opis) {
         this.nazwa = nazwa;
         this.opis = opis;
+    }
+
+    public Projekt(Integer projektId, String nazwa, String opis, LocalDateTime dataCzasUtworzenia, LocalDate dataOddania) {
+        this.projektId = projektId;
+        this.nazwa = nazwa;
+        this.opis = opis;
+        this.dataCzasUtworzenia = dataCzasUtworzenia;
+        this.dataOddania = dataOddania;
     }
 
     public Integer getProjektId() {
@@ -82,11 +92,11 @@ public class Projekt {
         this.dataCzasUtworzenia = dataCzasUtworzenia;
     }
 
-    public LocalDateTime getDataOddania() {
+    public LocalDate getDataOddania() {
         return dataOddania;
     }
 
-    public void setDataOddania(LocalDateTime dataOddania) {
+    public void setDataOddania(LocalDate dataOddania) {
         this.dataOddania = dataOddania;
     }
 }
