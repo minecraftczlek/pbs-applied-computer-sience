@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>lista projektów</title>
+</head>
+<body >
+<a href="./logout">wyloguj</a>
+    <div class="root">
+        <h1>LIST PROJEKTÓW</h1>
+        <b>LISTA PROJEKTÓW</b>
+        <a href="studentList">LISTA STUDENTÓW</a>
+        <a href="zadanieList">LISTA ZADAŃ</a>
+        <br>
+        <a href="projektEdit">nowy projekt</a>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>nazwa</th>
+                <th>opis</th>
+                <th>dataCzasUtworzenia</th>
+                <th>dataOddania</th>
+                <th>opcje</th>
+            </tr>
+            <tr th:each="projekt : ${projekty}">
+                <td th:text="${projekt.projektId}"></td>
+                <td th:text="${projekt.nazwa}"></td>
+                <td th:text="${projekt.opis}"></td>
+                <td th:text="${projekt.dataCzasUtworzenia}"></td>
+                <td th:text="${projekt.dataOddania}"></td>
+                <td>
+                    <a th:href="@{projektEdit(projektId=${projekt.projektId})}">edytuj</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
