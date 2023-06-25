@@ -4,7 +4,7 @@ semestr letni 2023
 ### Prowadzący: ****** ************
 ## labolatoria:
 
-- statystyka wyrazów
+- <a href="statistics">statystyka wyrazów</a>
 
 # REST API z basic authentication
 - <a href="project-rest-api">REST API (backend)</a>
